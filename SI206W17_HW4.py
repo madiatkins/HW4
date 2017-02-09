@@ -28,6 +28,21 @@ except:
 
 
 
+f = open("ny_html_text.html", "rb")
+soup = BeautifulSoup(f, 'html.parser')
+#soup = soup.encode("utf-8")
+
+nytimes_headlines = []
+for heading in soup.find_all(class_="story-heading"):
+	if heading.a: 
+		w = heading.a.text.replace("\n", " ").strip()
+		nytimes_headlines.append(w)
+	else:
+		y = heading.contents[0].strip()
+		nytimes_headlines.append(y)
+
+nytime_headlines = nytimes_headlines[0:9]
+
 
 
 ## PART 2 (200 points)

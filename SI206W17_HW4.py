@@ -124,7 +124,7 @@ umsi_titles = {name_list[n]: position_list[n] for n in range(len(name_list))}
 ## found help on this stack overflow site (http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python) for how to take two lists and make them into a dictionary -- I didn't want to use the zip module since I had never used it before, but I found an answer that I understood :)
 
 
-print(umsi_titles)
+#print(umsi_titles)
 
 
 

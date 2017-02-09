@@ -94,12 +94,53 @@ view_file.close()
 
 
 soup = BeautifulSoup(htmldoc,"html.parser")
-people = soup.find_all("div",{"class":"views-row"})
+
+name_list = []
+position_list = []
 
 
+
+for name in soup.find_all("div", attrs={"property": "dc:title"}):
+	n = name.contents[0].text
+	name_list.append(n)
+
+
+for title in soup.find_all(attrs={"class": "field field-name-field-person-titles field-type-text field-label-hidden"}):
+	m = title.contents[0].text
+	position_list.append(m)
 
 
 umsi_titles = {}
+
+
+umsi_titles = {name_list[n]: position_list[n] for n in range(len(name_list))}
+
+
+'''
+#for n in range(len(name_list)):
+	#umsi_titles = {name_list[n]: position_list[n]}	
+'''
+
+## found help on this stack overflow site (http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python) for how to take two lists and make them into a dictionary -- I didn't want to use the zip module since I had never used it before, but I found an answer that I understood :)
+
+
+print(umsi_titles)
+
+
+
+
+
+'''
+for name in soup.find_all(class_="story-heading"):
+	if heading.a: 
+		w = heading.a.text.replace("\n", " ").strip()
+		nytimes_headlines.append(w)
+	else:
+		y = heading.contents[0].strip()
+		nytimes_headlines.append(y)
+
+
+'''
 
 
 

@@ -14,18 +14,16 @@ from bs4 import BeautifulSoup
 
 ## Write the Python code to do so here.
 
-try:
-	html_text = requests.get("http://nytimes.com").text
-	html_text = html_text.encode('utf-8')
-except:
-	file = open("ny_html_text.html", "wb")
-	file.write(html_text)
-	file.close()
+html_text = requests.get("http://nytimes.com").text
+html_text = html_text.encode('utf-8')
+file = open("ny_html_text.html", "wb")
+file.write(html_text)
+file.close()
 
 
 
 #####################
-
+#PART 2
 
 
 f = open("ny_html_text.html", "rb")
@@ -45,44 +43,10 @@ nytime_headlines = nytimes_headlines[0:9]
 
 
 
-## PART 2 (200 points)
-## Write code to get the first 10 headlines from the New York Times, based on the data you saved in the file
-# in Part 1, and save those strings in a list called nytimes_headlines. 
-
-## Note that you will almost certainly need to do some investigation on the http://nytimes.com website to do this
-# correctly, even after saving the file in Part 1.
-
-## The strings that should be elements of your lists will be different depending upon when you accessed the data,
-# but they should probably be somewhat like this:
-
-## U.S. Files Charges Against Rahami in Series of Bombings
-## In a Play, a Take of a Bombing. A Block Away, a Real Explosion
-## The Interpreter: The War We'd Rather Not Talk About
-
-## .. et cetera, for 10 headline strings.
-
-## Weed out the headlines that do not have any text, for instance the headlines that are linked to pictures or
-# video but without any text content. You should not add these to the list nor count them towards the limit of 10.
-# Ignore them completely.
-
-## Not sure where to start? This link might very helpful:
-# http://www.practicepython.org/solution/2014/07/10/17-decode-a-web-page-solutions.html
-
-## We have included a couple of unit tests to check some things about your result, but we will also be 
-#checking your code against our OWN version of a nytimes_data.html file, which will almost certainly be 
-#different from yours, and your code should still work to get the first 10 text headlines from our file!
-
-## Write your code to complete this task here.
-## HINT: Remember that you'll need to open the file you created in Part 1, read the contets into one big string, and make a BeautifulSoup object out of that string!
-## NOTE that the provided link does not include saving the online data in a file as part of the process. But it still provides very useful hints/tricks about how to look for and identify the headlines on the NY Times page.
+##PART 3
 
 
-
-
-#####################
-
-
-response = requests.get("https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastname_value=&rid=All")
+response = requests.get("https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastname_value=&rid=All", headers ={'User-Agent': 'SI_CLASS'})
 htmldoc = response.text
 htmldoc = htmldoc.encode('utf-8')
 
@@ -121,10 +85,10 @@ umsi_titles = {name_list[n]: position_list[n] for n in range(len(name_list))}
 	#umsi_titles = {name_list[n]: position_list[n]}	
 '''
 
-## found help on this stack overflow site (http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python) for how to take two lists and make them into a dictionary -- I didn't want to use the zip module since I had never used it before, but I found an answer that I understood :)
+#found help on this stack overflow site (http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python) for how to take two lists and make them into a dictionary -- I didn't want to use the zip module since I had never used it before, but I found an answer that I understood :)
 
 
-#print(umsi_titles)
+print(umsi_titles)
 
 
 
